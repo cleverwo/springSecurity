@@ -1,0 +1,5 @@
+基于session的登陆认证方式
+代码位基于springmvc框架的session认证
+
+其中，config包下的ApplicationConfig和WebConfig是springmvc的基础配置
+init包下的
