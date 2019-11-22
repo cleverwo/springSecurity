@@ -6,7 +6,7 @@ import com.security.springmvc.model.UserDto;
 /**
  * @Auther: wangzhendong
  * @Date: 2019/11/21 15:41
- * @Description:
+ * @Description: 用户登陆认证
  */
 public interface AuthenticationService {
     /**

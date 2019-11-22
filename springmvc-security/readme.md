@@ -1,5 +1,18 @@
 基于session的登陆认证方式
 代码位基于springmvc框架的session认证
 
-其中，config包下的ApplicationConfig和WebConfig是springmvc的基础配置
-init包下的
+实现的过程：
+1. 配置sprigMvc的工作环境，包括了spring容器配置，servlet容器配置，
+config包下的ApplicationConfig为spring容器配置
+WebConfig是springmvc的基础配置
+init包下的SpringApplicationInitializer为启动加载配置信息
+2. 主要实现登陆认证的过程是用户名登陆判断用户密码是否正确，
+即AuthenticationService的authentication方法
+3. 实现用户session缓存保存用户登陆信息，主要是通过HttpSession中的方法，
+每次请求都会带有session会话，将用户信息缓存到session保存在内存中，每次请求
+检验内存中是否有该用户的会话信息。
+4. 实现用户的权限验证，用户的权限认证是控制用户api请求的资源的访问权限，
+首先对资源进行权限的设置，如： r/r1 定义了p1的访问权限，其次权限分配给用户
+即添加已权限属性给用户，最后配置拦截器拦截所有的请求，在r/**的所有请求中判断
+session中的用户信息中获取用户权限信息，判断用户是否有该资源的访问权限。
+
