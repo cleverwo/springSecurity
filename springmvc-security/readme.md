@@ -1,0 +1,30 @@
+基于springSecurity的登陆鉴权方式
+代码位基于springMvc框架
+
+该过程演示了springSecurity在springMvc中的快速使用，
+主要看与session的区别
+
+实现的过程：
+1. 配置sprigMvc的工作环境，包括了spring容器配置，servlet容器配置，
+config包下的ApplicationConfig为spring容器配置
+WebConfig是springMvc的基础配置
+init包下的SpringApplicationInitializer为启动加载配置信息
+这同session认证是一样的。
+2. 用户认证，在session中是写了一个方法来进行用户名和密码的比对，
+而SpringSecurity 提供了用户的密码登陆的鉴权方式，在config包下
+的WebSecurityConfig配置springSecurity的基本配置信息：
+UserDetail： 配置springSecurity如何获取用户的基本信息
+信息，本示例提供了内存中的用户信息。
+密码比对的方式：这里采用了直接的字符串比对，正式环境中有许多的加密方式，
+是告诉springSecurity拿到用户提供的密码怎么和userDetail即用户的基本信息
+中的密码的比对方式。
+安全拦截机制：
+
+3. 实现用户session缓存保存用户登陆信息，主要是通过HttpSession中的方法，
+每次请求都会带有session会话，将用户信息缓存到session保存在内存中，每次请求
+检验内存中是否有该用户的会话信息。
+4. 实现用户的权限验证，用户的权限认证是控制用户api请求的资源的访问权限，
+首先对资源进行权限的设置，如： r/r1 定义了p1的访问权限，其次权限分配给用户
+即添加已权限属性给用户，最后配置拦截器拦截所有的请求，在r/**的所有请求中判断
+session中的用户信息中获取用户权限信息，判断用户是否有该资源的访问权限。
+

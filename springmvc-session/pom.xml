@@ -11,8 +11,8 @@
     <artifactId>springmvc-session</artifactId>
 
     <packaging>war</packaging>
-    <name>springmvc-session</name>
-    <description>springmvc security for session</description>
+    <name>springMvc-session</name>
+    <description>springMvc security for session</description>
 
     <dependencies>
         <!-- spring webmvc 框架 -->

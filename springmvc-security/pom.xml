@@ -11,5 +11,94 @@
 
     <artifactId>springmvc-security</artifactId>
 
+    <packaging>war</packaging>
+    <name>springMvc-security</name>
+    <description>springMvc security for springSecurity</description>
+
+    <dependencies>
+        <!-- spring webmvc 框架 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.0.RELEASE</version>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- servlet 容器 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- spring-security web依赖-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.1.4.RELEASE</version>
+        </dependency>
+
+        <!-- spring-security 配置依赖-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.1.4.RELEASE</version>
+        </dependency>
+    </dependencies>
+
+    <!--构建产生的所有文件存放的目录 -->
+    <build>
+        <!--产生的构件的文件名，默认值是${artifactId}-${version}。 -->
+        <finalName>security-springmvc</finalName>
+        <!--子项目可以引用的默认插件信息。该插件配置项直到被引用时才会被解析或绑定到生命周期。给定插件的任何本地配置都会覆盖这里的配置 -->
+        <pluginManagement>
+            <plugins>
+                <!--tomcat 的运行插件-->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+                <!--maven 编译的插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <!--resource资源打包的插件-->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <encoding>utf-8</encoding>
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                        <resources>
+                            <resource>
+                                <directory>src/main/resources</directory>
+                                <filtering>true</filtering>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                            </resource>
+                            <resource>
+                                <directory>src/main/java</directory>
+                                <includes>
+                                    <include>**/*.xml</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
